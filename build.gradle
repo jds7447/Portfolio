@@ -1,0 +1,57 @@
+//현재 프로젝트의 플러그인 의존성 관리를 위한 설정
+/*ext라는 키워드는 build.gradle에서 사용하는 의미인데
+    여기선 springBootVersion 전역변수를 생성하고 그 값을 '2.1.9.RELEASE' 로 설정
+    즉, spring-boot-gradle-plugin 라는 스프링 부트 그레이들 플러그인의 해당 버전을 의존성으로 받겠다는 의미*/
+buildscript {
+    ext {
+        springBootVersion = '2.1.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+//앞서 설정한 플러그인 의존성들을 적용할 것인지를 결정하는 코드
+/*자바와 스프링 부트를 사용하기 위한 필수 플러그인*/
+/*'io.spring.dependency-management' 플러그인은 스프링 부트의 의존성들을 관리해주는 플러그인이라 반드시 추가*/
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+//plugins {
+//    id 'java'
+//}
+
+group 'com.portfolio'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+//각종 의존성(라이브러리)들을 어떤 원격 저장소에서 받을지 결정
+/*기본적으로 mavenCentral을 많이 사용하지만 라이브러리 업로드 난이도가 높아 최근에는 jcenter도 많이 사용*/
+/*mavenCentral은 본인이 만든 라이브러리를 업로드하기 위해 많은 과정과 설정이 필요
+* 최근에 나온 jcenter는 라이브러리 업로드를 간단하게 하였고, jcenter에 업로드 시 mavenCentral에도 업로드될 수 있도록 자동화 가능*/
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+//프로젝트 개발에 필요한 의존성들을 선언하는 곳
+/*버전의 변경에 따라 메서드 명이 아래와 같이 변경됨
+* compile, runtime, testCompile, testRuntime 은 Gradle 4.10 (2018.8.27) 이래로 deprecate 되었고, Gradle 7.0 (2021.4.9) 부터 삭제
+* implementation, runtimeOnly, testImplementation, testRuntimeOnly 으로 대체됨*/
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
