@@ -4,7 +4,9 @@
     즉, spring-boot-gradle-plugin 라는 스프링 부트 그레이들 플러그인의 해당 버전을 의존성으로 받겠다는 의미*/
 buildscript {
     ext {
-        springBootVersion = '2.1.9.RELEASE'
+        //부트 버전 업그레이드
+//        springBootVersion = '2.1.9.RELEASE'
+        springBootVersion = '2.4.1'
     }
     repositories {
         mavenCentral()
@@ -23,12 +25,17 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
+//2022.09.29_최신 버전은 위 플러그인 코드가 아니라 아래 코드로도 사용 가능 (책에 되어있는 코드 들은 2020년도 버전에 맞춘 코드)
 //plugins {
+//    id 'org.springframework.boot' version '2.4.1'
+//    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 //    id 'java'
+//    id 'eclipse'
 //}
 
 group 'com.portfolio'
-version '1.0-SNAPSHOT'
+//version '1.0-SNAPSHOT'
+version '1.0.4-SNAPSHOT-'+new Date().format("yyyyMMddHHmmss")
 sourceCompatibility = 1.8
 
 //각종 의존성(라이브러리)들을 어떤 원격 저장소에서 받을지 결정
@@ -48,6 +55,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    //JUnit
+    testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
