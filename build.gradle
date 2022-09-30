@@ -52,6 +52,7 @@ repositories {
 * compile, runtime, testCompile, testRuntime 은 Gradle 4.10 (2018.8.27) 이래로 deprecate 되었고, Gradle 7.0 (2021.4.9) 부터 삭제
 * implementation, runtimeOnly, testImplementation, testRuntimeOnly 으로 대체됨*/
 dependencies {
+    //스프링 부트
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
@@ -59,6 +60,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    //Lombok (Getter, Setter, 기본 생성자, toString 등을 어노테이션으로 자동 생성)
+    implementation 'org.projectlombok:lombok'
 }
 
 test {
