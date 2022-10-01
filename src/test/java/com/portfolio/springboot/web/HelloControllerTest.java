@@ -14,6 +14,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/* 테스트 컨트롤러의 테스트 코드 */
 @RunWith(SpringRunner.class)
 @WebMvcTest
 public class HelloControllerTest {

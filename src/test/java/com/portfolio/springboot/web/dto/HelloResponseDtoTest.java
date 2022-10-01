@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/* Lombok 테스트의 테스트 코드 */
 public class HelloResponseDtoTest {
 
     @Test

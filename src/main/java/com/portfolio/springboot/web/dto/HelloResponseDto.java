@@ -3,6 +3,7 @@ package com.portfolio.springboot.web.dto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+/* Lombok 테스트 */
 @Getter
 @RequiredArgsConstructor
 public class HelloResponseDto {

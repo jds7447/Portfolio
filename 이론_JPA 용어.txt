@@ -1,0 +1,13 @@
+도메인
+    게시글, 댓글, 회원, 정산, 결제 등 소프트웨어에 대한 요구사항 혹은 문제 영역
+    이전에 MyBatis 등에서 xml에 쿼리를 담고, 클래스는 쿼리의 결과만 담던 일을 모두 도메인 클래스에서 해결
+
+Entity
+    실제 DB와 매칭될 클래스이며 보통 Entity 클래스라고 부름
+
+Repository
+    보통 ibatis나 MyBatis 등에서 Dao라고 불리는 DB Layer 접근자이다
+    JPA에선 Repository라고 부르며 인터페이스로 생성
+    단순히 인터페이스 생성 후 JpaRepository<Entity 클래스, PK 타입> 를 상속하면 기본적인 CRUD 메서드가 자동으로 생성
+    @Repository 를 추가할 필요도 없음
+    Entity 클래스와 기본 Entity Repository는 함께 위치해야 함 (둘은 아주 밀접하고, Entity 클래스는 기본 Repository 없이 제역할을 할 수 없음)
