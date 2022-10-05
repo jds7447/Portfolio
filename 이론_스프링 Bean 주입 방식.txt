@@ -1,0 +1,11 @@
+스프링에서 Bean 주입 방식
+    @Autowired   (필드 주입)
+    setter
+    생성자
+
+이 중에서 가장 권장하는 방식은 생성자 주입
+생성자로 Bean 객체를 받도록 하면 @Autowired 와 동일한 효과를 볼 수 있음
+Lombok 라이브러리의 @RequiredArgsConstructor를 통해 final이 선언된 모든 필드를 인자값으로 하는 생성자를 자동으로 생성
+
+@Autowired 필드 주입 방식은 권장하지 않음
+중간에 데이터 변경이 발생할 가능성이 있음 (setter 주입이 필드 주입보다 낫지만 그래도 생성자 주입보다 안정성이 떨어짐)

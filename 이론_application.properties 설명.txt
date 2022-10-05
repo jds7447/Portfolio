@@ -1,0 +1,11 @@
+#JPA로 실행된 쿼리 로그 확인을 위한 설정
+spring.jpa.show_sql=true
+
+#출력되는 쿼리 로그를 MySQL 버전으로 변경
+#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+#스프링부트 버전이 2.1.9가 되면서 기존에 사용중이던 MySQL5InnoDBDialect 이 Deprecated가 되어 아래와 같이 변경
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL57Dialect
+spring.jpa.properties.hibernate.dialect.storage_engine=innodb
+spring.datasource.hikari.jdbc-url=jdbc:h2:mem://localhost/~/testdb;MODE=MYSQL
+#yh님 깃 허브에는 아래 코드도 적혀있긴 한데, MySQL을 설치하는 과정에서 입력했던 id를 입력한 것인가? (실제 DB 연동 시 쓰는 것인가?)
+#spring.datasource.hikari.username=sa
