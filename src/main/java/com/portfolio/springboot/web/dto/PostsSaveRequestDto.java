@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/* Post 요청 데이터 저장 관련 DTO (Dtos 영역) */
+/* Post 데이터 저장 DTO (Dtos 영역) */
 @Getter
 @NoArgsConstructor
 public class PostsSaveRequestDto {
@@ -21,6 +21,7 @@ public class PostsSaveRequestDto {
         this.author = author;
     }
 
+    /* 현재 객체(DTO)의 데이터를 이용해 Posts 엔티티(도메인) 객체 생성하여 반환 */
     public Posts toEntity() {
         return Posts.builder()
                 .title(title)
