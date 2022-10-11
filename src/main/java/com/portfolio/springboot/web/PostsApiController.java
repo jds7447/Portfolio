@@ -31,7 +31,7 @@ public class PostsApiController {
     /* post 데이터 조회 => R EAD / REST - GET / DB - SELECT */
     //전달 받은 id 값으로 해당 id를 기본키로 등록된 post 데이터를 조회하여 반환
     @GetMapping("api/v1/posts/{id}")
-    public PostsResponseDto findById(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
+    public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
     }
 
