@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /* Posts 도메인의 테스트 코드 */
@@ -45,6 +46,28 @@ public class PostsRepositoryTest {
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
     }
+
+    @Test
+    public void BaseTimeEntity_등록(){
+        //given
+        LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);   //임의로 설정한 날짜
+        postsRepository.save(Posts.builder()   //Builder를 이용해 Entity 객체 생성후 DB에 저장
+                .title("title")
+                .content("content")
+                .author("writer")
+                .build());
+
+        //when
+        List<Posts> postsList = postsRepository.findAll();   //테이블의 모든 데이터 조회
+
+        //then
+        Posts posts = postsList.get(0);   //조회한 데이터의 첫 번째 데이터(Entity 객체)
+
+        System.out.println(">>>>>> createDate=" + posts.getCreatedDate() + ", modifiedDate=" + posts.getModifiedDate());   //가져온 데이터의 생성, 수정 날짜 확인
+            assertThat(posts.getCreatedDate()).isAfter(now);   //생성 날짜가 임의로 설정한 날짜보다 미래가 맞는지 확인
+            assertThat(posts.getModifiedDate()).isAfter(now);   //수정 날짜가 임의로 설정한 날짜보다 미래가 맞는지 확인
+    }
+
 }
 
 /*
@@ -65,4 +88,8 @@ postsRepository.findAll
 /*
 @SpringBootTest
     별다른 설정 없이 해당 어노테이션을 사용할 경우 H2 데이터베이스를 자동으로 실행
+*/
+/*
+assertThat(확인날짜).isAfter(기준날짜)
+    기준날짜보다 확인날짜가 미래이면 true 리턴, 그렇지 않으면 false 리턴
 */

@@ -205,6 +205,10 @@ PostsRepositoryTest.java
     @SpringBootTest
         별다른 설정 없이 해당 어노테이션을 사용할 경우 H2 데이터베이스를 자동으로 실행
     */
+    /*
+    assertThat(확인날짜).isAfter(기준날짜)
+        기준날짜보다 확인날짜가 미래이면 true 리턴, 그렇지 않으면 false 리턴
+    */
 
 
 
@@ -223,4 +227,24 @@ PostsApiControllerTest.java
     /*
     @LocalServerPort
         현재 서버의 포트 번호 주입
+    */
+
+
+
+BaseTimeEntity.java
+    /*
+    @MappedSuperclass
+        JPA Entity 클래스들이 BaseTimeEntity을 상속할 경우 필드들(createdDate, modifiedDate)도 컬럼으로 인식하도록 한다
+    */
+    /*
+    @EntityListeners(AuditingEntityListener.class)
+        BaseTimeEntity 클래스에 Auditing 기능을 포함시킨다 (예를 들어 이 클래스를 상속 받은 도메인(Entity 클래스)을 영속성 컨텍스트에 저장하거나 update를 하는 경우를 감시한다)
+    */
+    /*
+    @CreatedDate
+        Entity가 생성되어 저장될 때 시간이 자동 저장됨
+    */
+    /*
+    @LastModifiedDate
+        조회한 Entity의 값을 변경할 때 시간이 자동 저장됨
     */
